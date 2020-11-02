@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">PunchAppTest1</string>
+    <string name="clear">Clear</string>
+    <string name="record">Record</string>
 </resources>
