@@ -26,27 +26,41 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Layout();
-        this.account = new Account(1001);
+        Layout(); // initializes the TextViews
+        this.account = new Account(1001); //Creates a new account and passes an ID to the account
 
+        //SensorManager needs an instance to start pulling sensor readings.
         SensorManager senManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+
+        //Creates an instance of the Acceleration class which will begin recording accelerometer data.
         acceleration = new Acceleration(senManager, this.accelDisp, this.maxAccelDisp);
     }
 
+    /**
+     * Initializes the Views in the app.
+     */
     public void Layout() {
         this.accelDisp = (TextView) findViewById(R.id.accelerationView);
         this.logDisp = (TextView) findViewById(R.id.logView);
         this.maxAccelDisp = (TextView) findViewById(R.id.maxAccelView);
     }
 
+    /**
+     * Records a punch when the record button is pressed
+     * @param view
+     */
     public void record(View view) {
-        this.account.newRecord(this.acceleration.getMaxAcceleration());
-        this.logDisp.setText(this.account.toString());
-        this.acceleration.resetMaxAcceleration();
+        this.account.newRecord(this.acceleration.getMaxAcceleration()); // records a new punch
+        this.logDisp.setText(this.account.toString()); //displays the punch in the view
+        this.acceleration.resetMaxAcceleration(); //resets the max acceleration view
     }
 
+    /**
+     * Clears the history of punches
+     * @param view
+     */
     public void clear(View view) {
-        this.account.clear();
-        this.logDisp.setText(this.account.toString());
+        this.account.clear(); // clears all punch data
+        this.logDisp.setText(this.account.toString()); // displays empty log
     }
 }

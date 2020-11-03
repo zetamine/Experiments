@@ -7,25 +7,42 @@ import android.hardware.SensorManager;
 import android.widget.TextView;
 import java.text.DecimalFormat;
 
+/**
+ * Records accleration data and reports acceleration data to the screen
+ */
 public class Acceleration implements SensorEventListener {
     private Double maxAcceleration = 0.0;
-    private SensorManager senManager;
     private double acceleration = 0;
+    private SensorManager senManager;
     private Sensor sen;
-    private TextView accelView;
-    private TextView maxAccelView;
-    String pattern = "##.###";
+    private TextView accelView; // TextView to display the current acceleration
+    private TextView maxAccelView; // TextView to display the max acceleration
+    String pattern = "##.###"; // Used to format the force
     DecimalFormat format = new DecimalFormat(pattern);
 
+    /**
+     * Constructor to initialize some variables.
+     * @param manager Needed to use the linear acceleration sensors
+     * @param aView View to display the current acceleration
+     * @param mAView View needed to display the max acceleration
+     */
     public Acceleration(SensorManager manager, TextView aView, TextView mAView) {
         this.senManager = manager;
         assert senManager != null;
+
+        //creates variable that gets data from the linear accelerometer
         sen = senManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
+
+        //registers a listener for sen
         senManager.registerListener(this, sen, SensorManager.SENSOR_DELAY_NORMAL);
         this.accelView = aView;
         this.maxAccelView = mAView;
     }
 
+    /**
+     * Triggers when the sensors returns a value (which is at a set interval)
+     * @param event
+     */
     @Override
     public void onSensorChanged(SensorEvent event) {
         Double linAcceleration;
@@ -34,20 +51,23 @@ public class Acceleration implements SensorEventListener {
         float y = event.values[1];
         float z = event.values[2];
 
-        linAcceleration = Math.sqrt(x * x + y * y + z * z);
+        linAcceleration = Math.sqrt(x * x + y * y + z * z); //gets the total linear acceleration from each axis
         this.acceleration = linAcceleration;
 
         // updates to a new maxAcceleration is newer value is larger
-        if (this.maxAcceleration < linAcceleration)
+        // also updates the view if maxAcceleration changed
+        if (this.maxAcceleration < linAcceleration) {
             this.maxAcceleration = linAcceleration;
+            this.maxAccelView.setText("Max acceleration: " + format.format(this.maxAcceleration));
+        }
 
+        // displays the current linear acceleration
         this.accelView.setText(format.format(linAcceleration));
-        this.maxAccelView.setText("Max acceleration: " + format.format(this.maxAcceleration));
     }
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
-
+        // ignore
     }
 
     public double getMaxAcceleration() {
