@@ -13,16 +13,18 @@ public class Acceleration implements SensorEventListener {
     private SensorManager senManager;
     private double acceleration = 0;
     private Sensor sen;
-    private TextView view;
+    private TextView accelView;
+    private TextView maxAccelView;
     String pattern = "##.####";
     DecimalFormat format = new DecimalFormat(pattern);
 
-    public Acceleration(SensorManager manager, TextView view) {
+    public Acceleration(SensorManager manager, TextView aView, TextView mAView) {
         this.senManager = manager;
         assert senManager != null;
         sen = senManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
         senManager.registerListener(this, sen, SensorManager.SENSOR_DELAY_NORMAL);
-        this.view = view;
+        this.accelView = aView;
+        this.maxAccelView = mAView;
     }
 
     @Override
@@ -40,7 +42,8 @@ public class Acceleration implements SensorEventListener {
         if (this.maxAcceleration < linAcceleration)
             this.maxAcceleration = linAcceleration;
 
-        this.view.setText(format.format(this.maxAcceleration));
+        this.accelView.setText(format.format(linAcceleration));
+        this.maxAccelView.setText("Max acceleration: " + format.format(this.maxAcceleration));
     }
 
     @Override
@@ -49,6 +52,10 @@ public class Acceleration implements SensorEventListener {
     }
 
     public double getMaxAcceleration() {
-        return maxAcceleration;
+        return this.maxAcceleration;
+    }
+
+    public void resetMaxAcceleration() {
+        this.maxAcceleration = 0.0;
     }
 }

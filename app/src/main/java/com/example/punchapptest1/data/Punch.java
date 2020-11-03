@@ -3,19 +3,19 @@ package com.example.punchapptest1.data;
 import java.time.LocalDateTime;
 
 public class Punch {
-    private double punchForce;
+    private Double punchForce;
     private LocalDateTime date;
 
-    public Punch(double force, LocalDateTime date) {
+    public Punch(double force) {
         this.punchForce = force;
-        this.date = date;
+        this.date = LocalDateTime.now();
     }
 
     public LocalDateTime getDate() {
         return date;
     }
 
-    public double getPunchForce() {
+    public Double getPunchForce() {
         return punchForce;
     }
 }
