@@ -5,7 +5,6 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.widget.TextView;
-
 import java.text.DecimalFormat;
 
 public class Acceleration implements SensorEventListener {
@@ -15,7 +14,7 @@ public class Acceleration implements SensorEventListener {
     private Sensor sen;
     private TextView accelView;
     private TextView maxAccelView;
-    String pattern = "##.####";
+    String pattern = "##.###";
     DecimalFormat format = new DecimalFormat(pattern);
 
     public Acceleration(SensorManager manager, TextView aView, TextView mAView) {
