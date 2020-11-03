@@ -13,13 +13,14 @@ import com.example.punchapptest1.data.Acceleration;
 import com.example.punchapptest1.data.Account;
 
 public class MainActivity extends AppCompatActivity {
-    private TextView accelDisp;
-    private TextView logDisp;
-    private TextView maxAccelDisp;
-    private Button clearBut;
-    private Button recordBut;
-    private Account account;
-    private Acceleration acceleration;
+    private TextView accelDisp; // This displays the linear acceleration from the sensor
+    private TextView maxAccelDisp; // This displays the max acceleration.
+    private TextView logDisp; // This displays the history of punches
+    private Button clearBut; // This appears in the layout but is not defined in this class
+    private Button recordBut; // same as clearBut.
+
+    private Account account; // Account class that holds all recorded punches
+    private Acceleration acceleration; // Class to take acceleration data
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,5 +43,10 @@ public class MainActivity extends AppCompatActivity {
         this.account.newRecord(this.acceleration.getMaxAcceleration());
         this.logDisp.setText(this.account.toString());
         this.acceleration.resetMaxAcceleration();
+    }
+
+    public void clear(View view) {
+        this.account.clear();
+        this.logDisp.setText(this.account.toString());
     }
 }

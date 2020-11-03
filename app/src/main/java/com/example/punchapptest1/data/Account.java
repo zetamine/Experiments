@@ -24,9 +24,12 @@ public class Account {
 
     //clear
     public void clear() {
-        for (Punch punch : punches
-        ) {
-            punches.remove(punch);
+        if (this.punches.size() == 0) {
+            return;
+        }
+
+        while (this.punches.size() > 0) {
+            this.punches.remove(0);
         }
     }
 
@@ -35,6 +38,10 @@ public class Account {
     @Override
     public String toString() {
         String list = "";
+
+        if (this.punches.size() == 0) {
+            return "";
+        }
 
         for (Punch punch : punches) {
             list += punch.getDate() + " " + punch.getPunchForce().toString() + "\n\n";
