@@ -15,6 +15,7 @@ public class Account {
     private ArrayList<Punch> punches = new ArrayList<Punch>(); // arrayList of punches
     String pattern = "##.###"; // pattern to format punch force
     DecimalFormat format = new DecimalFormat(pattern);
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy 'at' hh:mm:ss a");
 
     public Account(int id) {
         this.ID = id;
@@ -52,7 +53,7 @@ public class Account {
         }
 
         for (Punch punch : punches) { // formats the date and force to make it look readable
-            list += "Date: " + punch.getDate().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT)) +
+            list += "Date: " + punch.getDate().format(formatter) +
                     "\nForce: " + format.format(punch.getPunchForce()) + "\n\n";
         }
 
