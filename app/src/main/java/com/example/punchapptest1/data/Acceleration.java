@@ -17,7 +17,7 @@ public class Acceleration implements SensorEventListener {
     private Sensor sen;
     private TextView accelView; // TextView to display the current acceleration
     private TextView maxAccelView; // TextView to display the max acceleration
-    String pattern = "##.###"; // Used to format the force
+    String pattern = "##.#"; // Used to format the force
     DecimalFormat format = new DecimalFormat(pattern);
 
     /**

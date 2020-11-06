@@ -3,7 +3,6 @@ package com.example.punchapptest1.data;
 
 import java.text.DecimalFormat;
 import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 import java.util.ArrayList;
 
 /**
@@ -13,7 +12,7 @@ public class Account {
 
     private int ID; // account id | not really useful right now
     private ArrayList<Punch> punches = new ArrayList<Punch>(); // arrayList of punches
-    String pattern = "##.###"; // pattern to format punch force
+    String pattern = "##.#"; // pattern to format punch force
     DecimalFormat format = new DecimalFormat(pattern);
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy 'at' hh:mm:ss a");
 
