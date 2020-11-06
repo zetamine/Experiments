@@ -4,14 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/accelerationView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textSize="36sp"
+        android:textColor="@color/text"
+        android:textSize="24sp"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -21,6 +22,7 @@
         android:id="@+id/maxAccelView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:textColor="@color/text"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,23 +32,44 @@
         android:id="@+id/recordButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@color/button"
         android:onClick="record"
         android:text="@string/record"
-        app:layout_constraintEnd_toStartOf="@+id/clearButton"
+        android:textColor="@color/text"
+        app:layout_constraintEnd_toStartOf="@id/resetButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/maxAccelView" />
+
+    <Button
+        android:id="@+id/resetButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/button"
+        android:onClick="reset"
+        android:text="@string/reset"
+        android:textColor="@color/text"
+        app:layout_constraintEnd_toStartOf="@id/clearButton"
+        app:layout_constraintStart_toEndOf="@id/recordButton"
+        app:layout_constraintTop_toBottomOf="@+id/maxAccelView" />
 
     <Button
         android:id="@+id/clearButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@color/button"
         android:onClick="clear"
         android:text="@string/clear"
+        android:textColor="@color/text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/recordButton"
+        app:layout_constraintStart_toEndOf="@id/resetButton"
         app:layout_constraintTop_toBottomOf="@id/maxAccelView" />
 
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -62,7 +85,9 @@
             <TextView
                 android:id="@+id/logView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:textColor="@color/text"
+                android:textSize="18sp" />
         </LinearLayout>
     </ScrollView>
 

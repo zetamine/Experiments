@@ -63,6 +63,7 @@ public class Acceleration implements SensorEventListener {
 
         // displays the current linear acceleration
         this.accelView.setText(format.format(linAcceleration));
+        this.accelView.setText("Current Acceleration: "+ this.accelView.getText());
     }
 
     @Override

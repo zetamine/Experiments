@@ -63,4 +63,12 @@ public class MainActivity extends AppCompatActivity {
         this.account.clear(); // clears all punch data
         this.logDisp.setText(this.account.toString()); // displays empty log
     }
+
+    /**
+     * Resets current max acceleration
+     * @param view
+     */
+    public void reset(View view) {
+        this.acceleration.resetMaxAcceleration();
+    }
 }
