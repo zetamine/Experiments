@@ -95,7 +95,6 @@
         android:id="@+id/footnote"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:gravity="center"
         android:text="@string/footnote"
         android:textColor="@color/text"
