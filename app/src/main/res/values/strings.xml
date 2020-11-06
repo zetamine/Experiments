@@ -4,4 +4,7 @@
     <string name="record">Record</string>
     <string name="reset">Reset</string>
     <string name="footnote">\u00A9 2020 Ver 0.0.10</string>
+    <string name="begin">Tap to begin</string>
+    <string name="title_activity_login">Login</string>
+
 </resources>
